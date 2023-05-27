@@ -1,0 +1,79 @@
+/* Apply styles for screens between 750px and 999px wide */
+@media (min-width: 600px) and (max-width: 999px) {
+  .movies-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .right {
+    width: 45vw;
+  }
+  .left {
+    width: 55vw;
+  }
+}
+
+/* Apply styles for screens between 750px wide */
+@media (max-width: 749px) {
+  html {
+    font-size: 5px;
+  }
+  .main {
+    flex-direction: column;
+    height: auto;
+  }
+  .left {
+    width: 100%;
+    /* background-size: cover; */
+    height: 60rem;
+    border: 3rem solid #1e1e1e;
+  }
+  .text-content p {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    width: 80%;
+  }
+  .text-content a {
+    font-size: 2.5rem;
+  }
+  .right {
+    width: 100%;
+  }
+  .movies-container {
+    grid-template-columns: repeat(3, 1fr);
+    border: none;
+    padding: 0;
+    margin: 3rem;
+
+    /* max-height: 80rem; */
+  }
+  .movie-card {
+    width: 80%;
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 5px;
+  }
+  .main {
+    flex-direction: column;
+    height: auto;
+  }
+  .left {
+    width: 100%;
+    /* background-size: cover; */
+    height: 60rem;
+  }
+  .right {
+    width: 100%;
+  }
+  .movies-container {
+    grid-template-columns: repeat(2, 1fr);
+    border: none;
+    margin: 3rem;
+
+    /* max-height: 80rem; */
+  }
+  .movie-card {
+    width: 80%;
+  }
+}
