@@ -1,23 +1,20 @@
+import { getIds } from "./filter.js";
 // Global variables
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 let moviesList = [];
+let toBeSortedMoviesList = [];
 let moviesId = [];
 
 // // Don't touch this function please
 const autoRun = async () => {
   const movies = await fetchMovies();
   moviesList = [...movies.results];
+  toBeSortedMoviesList = [...movies.results];
   console.log("moviesList:");
   console.log(moviesList);
-  ids();
-};
-
-const ids = () => {
-  moviesList.forEach((movie) => {
-    moviesId.push(movie.id);
-  });
-  console.log(moviesId);
+  getIds();
+  // sortNumberArray(moviesList, moviesList.popularity, moviesPopularity);
 };
 
 // Don't touch this function please
@@ -41,4 +38,11 @@ const fetchMovie = async (moviesId) => {
   return res.json();
 };
 
-export { autoRun, fetchMovies, fetchMovie, moviesList, moviesId };
+export {
+  autoRun,
+  fetchMovies,
+  fetchMovie,
+  moviesList,
+  moviesId,
+  toBeSortedMoviesList,
+};
