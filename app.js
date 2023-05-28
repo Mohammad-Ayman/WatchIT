@@ -203,33 +203,34 @@ const renderMovies = (movies) => {
 
 //singleMovie.js
 // You may need to add to this function, definitely don't delete it.
-// const movieDetails = async (movie) => {
-//   const movieRes = await fetchMovie(movie.id);
-//   renderMovie(movieRes);
-// };
+const movieDetails = async (movie) => {
+  const movieRes = await fetchMovie(movie.id);
+  renderMovie(movieRes);
+};
 
-// // You'll need to play with this function in order to add features and enhance the style.
-// const renderMovie = (movie) => {
-//   MAIN.innerHTML = `
-//     <div class="row">
-//         <div class="col-md-4">
-//              <img id="movie-backdrop" src=${
-//                BACKDROP_BASE_URL + movie.backdrop_path
-//              }>
-//         </div>
-//         <div class="col-md-8">
-//             <h2 id="movie-title">${movie.title}</h2>
-//             <p id="movie-release-date"><b>Release Date:</b> ${
-//               movie.release_date
-//             }</p>
-//             <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
-//             <h3>Overview:</h3>
-//             <p id="movie-overview">${movie.overview}</p>
-//         </div>
-//             <h3>Actors:</h3>
-//             <ul id="actors" class="list-unstyled"></ul>
-//     </div>`;
-// };
+// You'll need to play with this function in order to add features and enhance the style.
+const renderMovie = (movie) => {
+  MAIN.innerHTML = `
+    <div class="row">
+        <div class="col-md-4">
+             <img id="movie-backdrop" src=${
+               BACKDROP_BASE_URL + movie.backdrop_path
+             }>
+        </div>
+        <div class="col-md-8">
+            <h2 id="movie-title">${movie.title}</h2>
+            <p id="movie-release-date"><b>Release Date:</b> ${
+              movie.release_date
+            }</p>
+            <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
+            <h3>Overview:</h3>
+            <p id="movie-overview">${movie.overview}</p>
+        </div>
+            <h3>Actors:</h3>
+            <ul id="actors" class="list-unstyled"></ul>
+    </div>`;
+};
+
 //actorsList.js
 let actors = [
   {
@@ -467,35 +468,79 @@ const renderActorsList = () => {
   });
   MAIN.appendChild(sectionELement);
 };
+
 //singleActor.js
-// You may need to add to this function, definitely don't delete it.
-const movieDetails = async (movie) => {
-  const movieRes = await fetchMovie(movie.id);
-  renderMovie(movieRes);
+const renderSingleActor = (actor) => {
+  MAIN.style.setProperty("height", "100%");
+  MAIN.innerHTML = `
+  <div class="actorReview">
+      <div id="main-bg" class="flex">
+          <div class="info">
+              <h3 class="singleActor-h3">${actor.name}</h3>
+              <div id="top-info">
+                  <div id="side-info">
+                      <div class="st-info">
+                          <div>
+                              <h5 class="singleActor-h5">Gender</h5>
+                              <p class="singleActor-p">${actor.gender}</p>
+                          </div>
+                          <div>
+                              <h5 class="singleActor-h5">Popularity</h5>
+                              <p class="singleActor-p">${actor.popularity}</p>
+                          </div>
+                      </div>
+                      <div class="nd-info">
+                          <div>
+                              <h5 class="singleActor-h5">Birthday</h5>
+                              <p class="singleActor-p">${actor.birthday}</p>
+                          </div>
+                          <div>
+                              <h5 class="singleActor-h5">Deathday</h5>
+                              <p class="singleActor-p">${"Not yet"}</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="act-picture" style="background-image: url(${
+                    actor.pictureUrl
+                  });"></div>
+                  <div id="bio-info">
+                      <h4 class="singleActor-h4">Biography</h4>
+                      <p class="singleActor-p">On a school field trip, Peter Parker (Maguire) is bitten by a genetically modified
+                      spider. He wakes up the next morning with incredible powers. After witnessing the death
+                      of his uncle (Robertson), Parkers decides to put his new skills to use in order to rid
+                      the city of evil, but someone else has other plans. The Green Goblin (Dafoe) sees
+                      Spider-Man as a threat and must dispose of him. Even if it means the Goblin has to
+                      target Parker's Aunt (Harris) and the girl he secretly pines for (Dunst)
+                  </p>
+                  </div>
+              </div>
+          </div>
+          <div id="rel-movies">
+              <h4 class="singleActor-header">Related Movies</h4>
+              <div class="actmovie">
+              </div>
+          </div>
+      </div>
+      `;
+  renderRelatedMovies(actor);
 };
 
-// You'll need to play with this function in order to add features and enhance the style.
-const renderMovie = (movie) => {
-  MAIN.innerHTML = `
-    <div class="row">
-        <div class="col-md-4">
-             <img id="movie-backdrop" src=${
-               BACKDROP_BASE_URL + movie.backdrop_path
-             }>
-        </div>
-        <div class="col-md-8">
-            <h2 id="movie-title">${movie.title}</h2>
-            <p id="movie-release-date"><b>Release Date:</b> ${
-              movie.release_date
-            }</p>
-            <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
-            <h3>Overview:</h3>
-            <p id="movie-overview">${movie.overview}</p>
-        </div>
-        </div>
-            <h3>Actors:</h3>
-            <ul id="actors" class="list-unstyled"></ul>
-    </div>`;
+// for (let i = 0; i < actors.listOfMovies.length; i++) {
+const renderRelatedMovies = (actor) => {
+  actor.listOfMovies.forEach((id) => {
+    moviesList.forEach((movie) => {
+      if (id === movie.id) {
+        console.log("Found " + id);
+        const sectionELement = document.createElement("section");
+        const newCard = createCard(movie.backdrop_path, movie.id);
+        newCard.addEventListener("click", () => {
+          movieDetails(movie);
+        });
+        sectionELement.appendChild(newCard);
+        MAIN.querySelector(".actmovie").appendChild(sectionELement);
+      }
+    });
+  });
 };
 
 //index.js
