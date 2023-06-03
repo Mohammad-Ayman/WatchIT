@@ -170,12 +170,17 @@ const sortDateArray = () => {
   renderMovies(moviesReleaseDate, "Most Recent Movies");
 };
 //home.js
+// adjust height depending in screen width to make the bk-image responsive
+const checkScreenWidth = () => {
+  const mediaQuery = window.matchMedia("(max-width: 749px)");
+  if (!mediaQuery.matches) MAIN.style.setProperty("height", "80rem");
+  else MAIN.style.setProperty("height", "auto");
+};
 const renderHome = () => {
+  checkScreenWidth();
   window.addEventListener("resize", () => {
     console.log("I ran... again");
-    const mediaQuery = window.matchMedia("(max-width: 749px)");
-    if (!mediaQuery.matches) MAIN.style.setProperty("height", "80rem");
-    else MAIN.style.setProperty("height", "auto");
+    checkScreenWidth();
   });
 
   MAIN.innerHTML = `

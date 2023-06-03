@@ -2,8 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Movies app" />
+    <meta name="keywords" content="movie movies watch free" />
+    <meta name="author" content="Mohamed" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:title" content="Watch4Free" />
+    <meta property="og:site_name" content="Watch4Free" />
+    <meta property="og:description" content="Movies app" />
+    <meta property="og:image" content="assets/images/logo.jpg" />
+    <meta
+      property="og:url"
+      content="https://mohammad-ayman.github.io/Watch4Free"
+    />
+
     <link rel="stylesheet" href="assets/styles/landing.css" />
     <link rel="stylesheet" href="assets/styles/media querries.css" />
     <link
@@ -25,61 +38,28 @@
     />
     <!-- <script type="module" src="index.js" defer></script> -->
     <script src="app.js" defer></script>
-    <title>Landing page</title>
+    <title>Watch 4</title>
   </head>
   <body>
     <header class="header flex">
       <div class="logo flex">
-        <img src="assets/images/w4fLogo.png" alt="Logo" />
-        <p>Watch<span>4</span>Free</p>
+        <img loading="lazy" src="assets/images/w4fLogo.png" alt="Logo" />
+        <p>Watch<span>4</span></p>
       </div>
       <nav>
         <ul class="flex">
           <li><a href="#"> Home</a></li>
           <li id="movies-navbar"><a href="#"> Movies</a></li>
           <li id="actors-navbar"><a href="#"> Actors</a></li>
-          <li><a href="#"> About</a></li>
           <li>
-            <a href="#" class="flex">
-              <p>Genre</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </a>
-          </li>
-          <li class="filter-container">
-            <a href="#" class="filter-option">Filter</a>
-            <ul class="dropdown">
-              <li><a href="#" id="popular-filter">Popular</a></li>
-              <li><a href="#" id="release-date-filter">Release Date</a></li>
-              <li><a href="#" id="top-rated-filter">Top Rated</a></li>
-              <!-- <li><a href="#" id="-filter">Now Playing</a></li>
-                <li><a href="#" id="-filter">Upcoming</a></li> -->
-            </ul>
-            <!-- <a href="#" class="flex">
-              <p>Filter</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </a> -->
+            <div class="dropdown-container">
+              <button class="dropdown-toggle">Select Filter</button>
+              <ul class="dropdown">
+                <li><a href="#" id="popular-filter">Popular</a></li>
+                <li><a href="#" id="release-date-filter">Release Date</a></li>
+                <li><a href="#" id="top-rated-filter">Top Rated</a></li>
+              </ul>
+            </div>
           </li>
           <li class="search-container flex">
             <input type="text" placeholder="Search" id="search" />
@@ -113,72 +93,30 @@
             <a href="#"><strong>Watch Trailer</strong></a>
           </div>
         </section>
-        <!-- <section class="right flex">
-          <div class="movies-container grid-3">
-            <div class="movie-card">
-              <a href="#">
-                <img
-                  class="flex"
-                  src="assets/images/Super Mario.jpg"
-                  alt="Super Mario"
-                />
-              </a>
-            </div>
-            <div class="movie-card">
-              <a href="#">
-                <img
-                  src="assets/images/WhatsApp Image 2023-05-25 at 18.07.47.jpg"
-                  alt="Super Mario"
-                />
-              </a>
-            </div>
-            <div class="movie-card">
-              <a href="#">
-                <img
-                  src="assets/images/WhatsApp Image 2023-05-25 at 18.08.15.jpg"
-                  alt="Super Mario"
-                />
-              </a>
-            </div>
-            <div class="movie-card">
-              <a href="#">
-                <img
-                  src="assets/images/WhatsApp Image 2023-05-25 at 18.07.47.jpg"
-                  alt="Super Mario"
-                />
-              </a>
-            </div>
-            <div class="movie-card">
-              <a href="#">
-                <img
-                  src="assets/images/WhatsApp Image 2023-05-25 at 18.08.15.jpg"
-                  alt="Super Mario"
-                />
-              </a>
-            </div>
-            <div class="movie-card">
-              <a href="#">
-                <img src="assets/images/Super Mario.jpg" alt="Super Mario" />
-              </a>
-            </div>
-          </div>
-        </section> -->
       </div>
     </main>
     <footer>
       <div class="authors-container flex">
-        <p>Authors :</p>
+        <p>Author :</p>
         <a href="https://www.linkedin.com/in/mohamed-ayman22/" target="_blank">
-          <img src="assets/images/wvuqpzrv.png" alt="footer image" />
+          <img
+            loading="lazy"
+            src="assets/images/wvuqpzrv.png"
+            alt="footer image"
+          />
         </a>
-        <a href="https://www.linkedin.com/in/mehmetnl/" target="_blank">
-          <img src="assets/images/footer.jpg" alt="footer image" />
+        <a href="https://github.com/Mohammad-Ayman" target="_blank">
+          <img loading="lazy" src="assets/images/unlu.jpg" alt="footer image" />
+        </a>
+        <a href="https://www.linkedin.com/in/amdjed-belgacem/" target="_blank">
+          <img
+            loading="lazy"
+            src="assets/images/amdjad.jpg"
+            alt="footer image"
+          />
         </a>
         <a href="#">
-          <img src="assets/images/footer.jpg" alt="footer image" />
-        </a>
-        <a href="#">
-          <img src="assets/images/footer.jpg" alt="footer image" />
+          <img loading="lazy" src="assets/images/anas.jpg" alt="footer image" />
         </a>
       </div>
     </footer>
