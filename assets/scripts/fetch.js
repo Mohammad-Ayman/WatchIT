@@ -14,7 +14,6 @@ const autoRun = async () => {
   console.log("moviesList:");
   console.log(moviesList);
   getIds();
-  // sortNumberArray(moviesList, moviesList.popularity, moviesPopularity);
 };
 
 // Don't touch this function please

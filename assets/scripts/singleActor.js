@@ -1,10 +1,7 @@
-import { actors } from "./actorsList.js";
-import { MAIN } from "./moviesList.js";
+import { MAIN, BACKDROP_BASE_URL } from "./moviesList.js";
 import { moviesList } from "./fetch.js";
-import { createCard } from "./filter.js";
-import { movieDetails } from "./singleMovie.js";
+import { moviesHandler } from "./filter.js";
 
-//<div class="reviewBG"></div>
 const renderSingleActor = (actor) => {
   MAIN.style.setProperty("height", "100%");
   MAIN.innerHTML = `
@@ -40,17 +37,13 @@ const renderSingleActor = (actor) => {
                   });"></div>
                   <div id="bio-info">
                       <h4 class="singleActor-h4">Biography</h4>
-                      <p class="singleActor-p">On a school field trip, Peter Parker (Maguire) is bitten by a genetically modified
-                      spider. He wakes up the next morning with incredible powers. After witnessing the death
-                      of his uncle (Robertson), Parkers decides to put his new skills to use in order to rid
-                      the city of evil, but someone else has other plans. The Green Goblin (Dafoe) sees
-                      Spider-Man as a threat and must dispose of him. Even if it means the Goblin has to
-                      target Parker's Aunt (Harris) and the girl he secretly pines for (Dunst)
+                      <p class="singleActor-p">
+                      ${actor.biography}
                   </p>
                   </div>
               </div>
           </div>
-          <div id="rel-movies">
+          <div id="similar">
               <h4 class="singleActor-header">Related Movies</h4>
               <div class="actmovie">
               </div>
@@ -60,19 +53,23 @@ const renderSingleActor = (actor) => {
   renderRelatedMovies(actor);
 };
 
-// for (let i = 0; i < actors.listOfMovies.length; i++) {
 const renderRelatedMovies = (actor) => {
   actor.listOfMovies.forEach((id) => {
     moviesList.forEach((movie) => {
       if (id === movie.id) {
-        console.log("Found " + id);
-        const sectionELement = document.createElement("section");
-        const newCard = createCard(movie.backdrop_path, movie.id);
-        newCard.addEventListener("click", () => {
-          movieDetails(movie);
-        });
-        sectionELement.appendChild(newCard);
-        MAIN.querySelector(".actmovie").appendChild(sectionELement);
+        const actmovie = document.querySelector("#similar .actmovie");
+
+        const ulELement = document.createElement("ul");
+        ulELement.classList.add("actors-ul");
+        actmovie.append(ulELement);
+
+        const liELement = document.createElement("li");
+        liELement.innerHTML = `
+         <img  class="actor-box" 
+         src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${movie.id} ">
+         <p class="actors-p">${movie.title}</p>`;
+        ulELement.appendChild(liELement);
+        ulELement.addEventListener("click", moviesHandler);
       }
     });
   });
