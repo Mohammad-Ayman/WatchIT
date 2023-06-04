@@ -14,19 +14,19 @@ const autoRun = async () => {
   console.log("moviesList:");
   console.log(moviesList);
   getIds();
-  // sortNumberArray(moviesList, moviesList.popularity, moviesPopularity);
 };
 
 // Don't touch this function please
 const constructUrl = (path) => {
-  return `${TMDB_BASE_URL}/${path}?api_key=${atob(
-    "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
-  )}`;
+  return `${TMDB_BASE_URL}//${path}?api_key=949427db6a46ecc017077039c6981bb4&with_genres=16&page=20`;
+  // return `${TMDB_BASE_URL}/${path}?api_key=${atob(
+  //   "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
+  // )}`;
 };
 
 // This function is to fetch movies. You may need to add it or change some part in it in order to apply some of the features.
 const fetchMovies = async () => {
-  const url = constructUrl(`movie/now_playing`);
+  const url = constructUrl(`discover/movie`);
   const res = await fetch(url);
   return res.json();
 };
@@ -35,6 +35,8 @@ const fetchMovies = async () => {
 const fetchMovie = async (moviesId) => {
   const url = constructUrl(`movie/${moviesId}`);
   const res = await fetch(url);
+  console.log("fetched movie" + res);
+  console.log(res.json());
   return res.json();
 };
 
