@@ -121,12 +121,20 @@ const createCard = (e, t) => {
       console.log(moviesReleaseDate),
       renderMovies(moviesReleaseDate, "Most Recent Movies");
   },
+  scrollToTop = () => {
+    document.documentElement.scrollIntoView({
+      behavior: "smooth",
+      // behavior: "auto",
+      block: "start",
+    });
+  },
   checkScreenWidth = () => {
     window.matchMedia("(max-width: 749px)").matches
       ? MAIN.style.setProperty("height", "auto")
       : MAIN.style.setProperty("height", "80rem");
   },
   renderHome = () => {
+    scrollToTop();
     checkScreenWidth(),
       window.addEventListener("resize", () => {
         console.log("I ran... again"), checkScreenWidth();
@@ -175,6 +183,7 @@ const createCard = (e, t) => {
     renderMovies(moviesList, "Movies");
   },
   renderMovies = (e, t) => {
+    scrollToTop();
     (MAIN.innerHTML = ""),
       MAIN.classList.add("actors-main"),
       MAIN.style.setProperty("height", "100%");
@@ -197,6 +206,7 @@ const createCard = (e, t) => {
       r.addEventListener("click", moviesHandler);
   },
   renderSingleMovie = (e) => {
+    scrollToTop();
     MAIN.style.setProperty("height", "auto"),
       // <div id="main-bg1" style="background-image: linear-gradient(to bottom, #101010, #1F1F1F, #101010), url('${
       //   BACKDROP_BASE_URL + e.backdrop_path
@@ -513,6 +523,7 @@ let actorsPictures = [
 
 console.log(actors);
 const renderActorsList = (e) => {
+    scrollToTop();
     (MAIN.innerHTML = ""),
       MAIN.classList.add("actors-main"),
       MAIN.style.setProperty("height", "100%");
@@ -537,6 +548,7 @@ const renderActorsList = (e) => {
       i.addEventListener("click", actorsHandler);
   },
   renderSingleActor = (e) => {
+    scrollToTop();
     MAIN.style.setProperty("height", "100%"),
       (MAIN.innerHTML = `
   <div class="actorReview">
