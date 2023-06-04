@@ -189,7 +189,7 @@ const createCard = (e, t) => {
         let t = document.createElement("li");
         (t.innerHTML = `
     <img loading="lazy" class="actor-box" 
-    src="${BACKDROP_BASE_URL + e.backdrop_path}" alt="${e.id}">
+    src="${BACKDROP_BASE_URL + e.poster_path}" alt="${e.id}">
         <p class="actors-p">${e.title}</p>`),
           r.appendChild(t);
       }),
@@ -198,6 +198,12 @@ const createCard = (e, t) => {
   },
   renderSingleMovie = (e) => {
     MAIN.style.setProperty("height", "auto"),
+      // <div id="main-bg1" style="background-image: linear-gradient(to bottom, #101010, #1F1F1F, #101010), url('${
+      //   BACKDROP_BASE_URL + e.backdrop_path
+      // }');
+      // background-repeat: no-repeat;
+      // background-size: 100% 100%;
+      // opacity: 0.8;">
       (MAIN.innerHTML = `
       <div id="main-bg"> 
       <div class="info">
@@ -205,9 +211,7 @@ const createCard = (e, t) => {
           <div>
               <div id="side-info">
                   <div>
-                      <div><h3>Release Date</h3><p>${
-                        e.release_date
-                      }</p></div>
+                      <div><h3>Release Date</h3><p>${e.release_date}</p></div>
                       <div><h3>Popularity</h3><p>${e.popularity}</p></div>
                   </div>
                   <div>
@@ -249,7 +253,7 @@ const createCard = (e, t) => {
       .getElementById("spidy")
       .style.setProperty(
         "background-image",
-        "url(" + BACKDROP_BASE_URL + e.backdrop_path + ")"
+        "url(" + BACKDROP_BASE_URL + e.poster_path + ")"
       ),
       renderRelatedActors(e),
       renderRelatedMovies(e);
@@ -264,7 +268,7 @@ const createCard = (e, t) => {
         let t = document.createElement("li");
         (t.innerHTML = `
     <img  class="actor-box" 
-    src="${BACKDROP_BASE_URL + moviesList[e].backdrop_path}" alt="${
+    src="${BACKDROP_BASE_URL + moviesList[e].poster_path}" alt="${
           moviesList[e].id
         } ">
         <p class="actors-p">${moviesList[e].title}</p>`),
@@ -298,7 +302,7 @@ let actorsPictures = [
     "assets/images/actor4.jpg",
     "assets/images/actor5.jpg",
   ],
-actors = [
+  actors = [
     {
       name: "Actor 1",
       gender: "Male",
@@ -506,7 +510,7 @@ actors = [
       listOfMovies: [13004, 678638, 5559, 15167, 12222],
     },
   ];
-  
+
 console.log(actors);
 const renderActorsList = (e) => {
     (MAIN.innerHTML = ""),
@@ -590,7 +594,7 @@ const renderActorsList = (e) => {
           let a = document.createElement("li");
           (a.innerHTML = `
          <img  class="actor-box" 
-         src="${BACKDROP_BASE_URL + t.backdrop_path}" alt="${t.id} ">
+         src="${BACKDROP_BASE_URL + t.poster_path}" alt="${t.id} ">
          <p class="actors-p">${t.title}</p>`),
             r.appendChild(a),
             r.addEventListener("click", moviesHandler);
