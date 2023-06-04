@@ -165,7 +165,7 @@ const createCard = (e, t) => {
       renderRecommendedMovies(e, "movies-container"),
       MAIN.appendChild(e),
       e
-        .querySelector(".movies-container")
+        .querySelector(".movies-container div")
         .addEventListener("click", moviesHandler);
   },
   renderRecommendedMovies = (e, t) => {
