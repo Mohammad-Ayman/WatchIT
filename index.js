@@ -18,6 +18,8 @@ const searchBtn = document.querySelector(".search-icon");
 const filterPopular = document.getElementById("popular-filter");
 const filterReleaseDate = document.getElementById("release-date-filter");
 const filterTopRated = document.getElementById("top-rated-filter");
+const dropdownToggle = document.querySelector(".dropdown-toggle");
+const dropdownMenu = document.querySelector(".dropdown");
 
 // document.addEventListener("DOMContentLoaded", autoRun);
 document.addEventListener("DOMContentLoaded", () => autoRun().then(renderHome));
@@ -31,3 +33,6 @@ searchBtn.addEventListener("click", searchBtnHandler);
 filterPopular.addEventListener("click", sortNumberArray);
 filterReleaseDate.addEventListener("click", sortDateArray);
 filterTopRated.addEventListener("click", sortTopRatedArray);
+dropdownToggle.addEventListener("click", () => {
+  dropdownMenu.classList.toggle("show");
+});

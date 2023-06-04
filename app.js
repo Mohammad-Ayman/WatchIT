@@ -622,6 +622,9 @@ const renderActorsList = (e) => {
   filterPopular = document.getElementById("popular-filter"),
   filterReleaseDate = document.getElementById("release-date-filter"),
   filterTopRated = document.getElementById("top-rated-filter");
+const dropdownToggle = document.querySelector(".dropdown-toggle");
+const dropdownMenu = document.querySelector(".dropdown");
+
 document.addEventListener("DOMContentLoaded", () => autoRun().then(renderHome)),
   moviesNavbar.addEventListener("click", applyRenderMovies),
   moviesHome.addEventListener("click", renderHome),
@@ -631,3 +634,6 @@ document.addEventListener("DOMContentLoaded", () => autoRun().then(renderHome)),
   filterPopular.addEventListener("click", sortNumberArray),
   filterReleaseDate.addEventListener("click", sortDateArray),
   filterTopRated.addEventListener("click", sortTopRatedArray);
+dropdownToggle.addEventListener("click", () => {
+  dropdownMenu.classList.toggle("show");
+});
