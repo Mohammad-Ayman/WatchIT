@@ -58,7 +58,7 @@ const createCard = (e, t) => {
     if (
       (console.log(e.target),
       console.log(e.target.tagName),
-      "IMG" === e.target.tagName)
+      e.target.tagName === "IMG")
     ) {
       let t = e.target.closest(" img").getAttribute("alt");
       return console.log(t), t;
@@ -165,7 +165,7 @@ const createCard = (e, t) => {
       renderRecommendedMovies(e, "movies-container"),
       MAIN.appendChild(e),
       e
-        .querySelector(".movies-container div")
+        .querySelector(".movies-container")
         .addEventListener("click", moviesHandler);
   },
   renderRecommendedMovies = (e, t) => {
