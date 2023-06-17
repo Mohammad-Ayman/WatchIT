@@ -39,11 +39,18 @@ const fetchMovie = async (moviesId) => {
   console.log(res.json());
   return res.json();
 };
-
+const fetchTrailers = async (movie_id) => {
+  const url = constructUrl(`movie/${movie_id}/videos`);
+  const res = await fetch(url);
+  const data = await res.json();
+  // console.log(data.results);
+  return data;
+};
 export {
   autoRun,
   fetchMovies,
   fetchMovie,
+  fetchTrailers,
   moviesList,
   moviesId,
   toBeSortedMoviesList,
