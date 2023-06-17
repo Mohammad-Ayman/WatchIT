@@ -388,8 +388,8 @@ body {
 img.actor-box {
   width: 20vw;
   height: 20vw;
-  -o-object-fit: cover;
-  object-fit: cover;
+  -o-object-fit: fill;
+  object-fit: fill;
   border-radius: 1rem;
 }
 .actors-p {
