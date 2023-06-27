@@ -11,8 +11,18 @@ import { moviesTopRated } from "./filter.js";
 const checkScreenWidth = () => {
   window.matchMedia("(max-width: 749px)").matches
     ? MAIN.style.setProperty("height", "auto")
-    : MAIN.style.setProperty("height", "80rem");
+    : MAIN.style.setProperty("height", "auto");
 };
+// const checkScreenWidth = () => {
+//   if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+//     const initialHeight = MAIN.style.getPropertyValue("height");
+//     if (window.matchMedia("(max-width: 749px)").matches) {
+//       MAIN.style.setProperty("height", "auto");
+//     } else {
+//       MAIN.style.setProperty("height", initialHeight);
+//     }
+//   }
+// };
 
 const leftHomeSection = (target, movie) => {
   target.innerHTML = `
@@ -54,10 +64,12 @@ const renderHome = () => {
   sortTopRatedArray();
   const topRatedMovie = moviesTopRated[0];
 
-  checkScreenWidth(),
-    window.addEventListener("resize", () => {
-      console.log("I ran... again"), checkScreenWidth();
-    });
+  checkScreenWidth();
+
+  window.addEventListener("resize", () => {
+    console.log("I ran... again");
+    checkScreenWidth();
+  });
 
   leftHomeSection(MAIN, topRatedMovie);
   rightHomeSection();
