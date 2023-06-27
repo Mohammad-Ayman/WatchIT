@@ -1,32 +1,39 @@
-import { MAIN } from "./moviesList.js";
+import { MAIN, BACKDROP_BASE_URL } from "./moviesList.js";
 import { moviesList } from "./fetch.js";
-import { createCard, getRandomIndexes, moviesHandler } from "./filter.js";
+import {
+  createCard,
+  getRandomIndexes,
+  moviesHandler,
+  sortTopRatedArray,
+} from "./filter.js";
+import { moviesTopRated } from "./filter.js";
 
 const checkScreenWidth = () => {
   window.matchMedia("(max-width: 749px)").matches
     ? MAIN.style.setProperty("height", "auto")
     : MAIN.style.setProperty("height", "80rem");
 };
-const renderHome = () => {
-  checkScreenWidth(),
-    window.addEventListener("resize", () => {
-      console.log("I ran... again"), checkScreenWidth();
-    }),
-    (MAIN.innerHTML = `
+
+const leftHomeSection = (target, movie) => {
+  target.innerHTML = `
   <section class="left flex">
   <div class="text-content flex">
-    <h2><strong>Spiderman</strong></h2>
+    <h2><strong>${movie.title}</strong></h2>
     <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim,
-      omnis magni quidem quis culpa hic praesentium nobis itaque,
-      exercitationem atque, quas provident impedit voluptatem ratione
-      aperiam ex nostrum autem vel?
+     ${movie.overview}
     </p>
     <a href="#"><strong>Watch Trailer</strong></a>
   </div>
 </section>
-  `);
-
+  `;
+  const leftHome = document.querySelector(".left");
+  leftHome.style.backgroundImage = `linear-gradient(
+    to bottom,
+    rgba(26, 235, 50, 0),
+    rgba(235, 10, 10, 0.8)  
+  ),url(${BACKDROP_BASE_URL + movie.backdrop_path})`;
+};
+const rightHomeSection = () => {
   const sectionElement = document.createElement("section");
   sectionElement.classList.add("right", "flex");
   sectionElement.innerHTML = `
@@ -41,6 +48,19 @@ const renderHome = () => {
   sectionElement
     .querySelector(".movies-container")
     .addEventListener("click", moviesHandler);
+};
+
+const renderHome = () => {
+  sortTopRatedArray();
+  const topRatedMovie = moviesTopRated[0];
+
+  checkScreenWidth(),
+    window.addEventListener("resize", () => {
+      console.log("I ran... again"), checkScreenWidth();
+    });
+
+  leftHomeSection(MAIN, topRatedMovie);
+  rightHomeSection();
 };
 
 const renderRecommendedMovies = (cardsParent, divClassName) => {

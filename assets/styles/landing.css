@@ -132,6 +132,9 @@ div.reviewBG {
   display: -ms-flexbox;
   display: flex;
 }
+.center-text {
+  text-align: center;
+}
 .header {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -235,6 +238,7 @@ li svg {
       rgba(235, 10, 10, 0.8)
     ),
     url("../images/Spiderman.jpg");
+  /* background-image: url("../images/logo.jpg") */
   background-repeat: no-repeat;
   color: #fff;
   -webkit-box-align: end;

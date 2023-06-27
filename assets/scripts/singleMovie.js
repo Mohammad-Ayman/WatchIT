@@ -1,55 +1,66 @@
-import { fetchMovie, moviesList } from "/assets/scripts/fetch.js";
+import {
+  fetchMovie,
+  fetchTrailers,
+  moviesList,
+} from "/assets/scripts/fetch.js";
 import { MAIN, BACKDROP_BASE_URL } from "./moviesList.js";
 import { actors } from "./actorsList.js";
 import { moviesHandler, getRandomIndexes, actorsHandler } from "./filter.js";
 
-const renderSingleMovie = (movie) => {
+const renderSingleMovie = async (movie) => {
+  let trailerKey = "";
+  try {
+    const url = await fetchTrailers(movie.id);
+    if (url.results && url.results.length > 0 && url.results[0].key) {
+      trailerKey = url.results[0].key;
+    }
+  } catch (error) {
+    console.error("Error fetching trailers:", error);
+  }
+  console.log(trailerKey);
+
   MAIN.style.setProperty("height", "auto");
   MAIN.innerHTML = `
-  <div id="main-bg"> 
-  <div class="info">
-      <h1 id="title-name">${movie.title}</h1>
-      <div>
-          <div id="side-info">
-              <div>
+        <div id="main-bg">
+          <div class="info">
+            <h1 id="title-name">${movie.title}</h1>
+            <div>
+              <div id="side-info">
+                <div>
                   <div><h3>Release Date</h3><p>${movie.release_date}</p></div>
                   <div><h3>Popularity</h3><p>${movie.popularity}</p></div>
-              </div>
-              <div>
+                </div>
+                <div>
                   <div><h3>Language</h3><p>${movie.original_language.toUpperCase()}</p></div>
                   <div><h3>Rate</h3><p>${movie.vote_average}</p></div>
-                  </div>
+                </div>
+              </div>
+              <div id="spidy"></div>
+              <div id="trailer-container">
+                <h1>Trailer</h1>
+                <iframe class="trailer" src="https://www.youtube.com/embed/${trailerKey}?" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+            </div>
           </div>
-          <div id="spidy">
+          <div class="info">
+            <h1 id="over">Overview</h1>
+            <p>${movie.overview}</p>
           </div>
-          <div id="trailer-container"> 
-              <h1>Trailer</h1>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/F478PvRt74Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div id="actors">
+            <h1 class="header">Actors</h1>
+            <div class="actmovie"></div>
           </div>
-      </div>
-  </div> 
-  <div class="info">
-      <h1 id="over">Overview</h1>
-      <p>
-      ${movie.overview} ${movie.overview}
-      </p>
-  </div>
-  <div id="actors">
-      <h1 class="header">Actors</h1>
-      <div class="actmovie">
-      </div>
-  </div>
-  <div id="similar">
-      <h1 class="header">Similar Movies</h1>
-      <div class="actmovie">
-      </div>
-  </div>
-  <div id="production">
-      <h1 class="header">Production Companies</h1>
-      <div></div>
-      </div>
-      </div>
+          <div id="similar">
+            <h1 class="header">Similar Movies</h1>
+            <div class="actmovie"></div>
+          </div>
+          <div id="production">
+            <h1 class="header">Production Companies</h1>
+            <div></div>
+          </div>
+        </div>
       `;
+
   const backgroundImage = document.getElementById("spidy");
   backgroundImage.style.setProperty(
     "background-image",
@@ -58,6 +69,22 @@ const renderSingleMovie = (movie) => {
 
   renderRelatedActors(movie);
   renderRelatedMovies(movie);
+};
+
+const xyz = async (movie) => {
+  try {
+    const url = await fetchTrailers(movie.Id);
+    if (url.key) {
+      console.log(url.key);
+      return url[0].key;
+    } else {
+      console.log("No Keys Found");
+      return "";
+    }
+  } catch (error) {
+    console.error("Error fetching trailers:", error);
+    return "";
+  }
 };
 
 const renderRelatedMovies = (movies) => {
@@ -73,11 +100,11 @@ const renderRelatedMovies = (movies) => {
   recommendedMoviesIndexes.forEach((index) => {
     const liELement = document.createElement("li");
     liELement.innerHTML = `
-    <img  class="actor-box" 
-    src="${BACKDROP_BASE_URL + moviesList[index].backdrop_path}" alt="${
+      <img  class="actor-box" 
+      src="${BACKDROP_BASE_URL + moviesList[index].backdrop_path}" alt="${
       moviesList[index].id
     } ">
-        <p class="actors-p">${moviesList[index].title}</p>`;
+          <p class="actors-p">${moviesList[index].title}</p>`;
     ulELement.appendChild(liELement);
   });
   ulELement.addEventListener("click", moviesHandler);
@@ -96,9 +123,9 @@ const renderRelatedActors = (movie) => {
       if (id === movie.id) {
         const liELement = document.createElement("li");
         liELement.innerHTML = `
-    <img  class="actor-box" 
-    src="${actor.pictureUrl}" alt="${actor.name}">
-        <p class="actors-p">${actor.name}</p>`;
+      <img  class="actor-box" 
+      src="${actor.pictureUrl}" alt="${actor.name}">
+          <p class="actors-p">${actor.name}</p>`;
         ulELement.appendChild(liELement);
       }
     });

@@ -36,3 +36,13 @@ filterTopRated.addEventListener("click", sortTopRatedArray);
 dropdownToggle.addEventListener("click", () => {
   dropdownMenu.classList.toggle("show");
 });
+// const fetchTrailers = async (movie_id) => {
+//   // const url = constructUrl(`movie/${movie_id}/videos`);
+//   const res = await fetch(
+//     `https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=949427db6a46ecc017077039c6981bb4&with_genres=16&page=20`
+//   );
+//   const data = await res.json();
+//   console.log(data);
+//   return data;
+// };
+// fetchTrailers(459003);

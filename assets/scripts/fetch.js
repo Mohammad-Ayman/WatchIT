@@ -5,6 +5,7 @@ const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 let moviesList = [];
 let toBeSortedMoviesList = [];
 let moviesId = [];
+let moviesRate = [];
 
 // // Don't touch this function please
 const autoRun = async () => {
