@@ -26,7 +26,7 @@ const checkScreenWidth = () => {
 
 const leftHomeSection = (target, movie) => {
   target.innerHTML = `
-  <section class="left flex">
+  <section class="left flex" style= "height: 90rem">
   <div class="text-content flex">
     <h2><strong>${movie.title}</strong></h2>
     <p>

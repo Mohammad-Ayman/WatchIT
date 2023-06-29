@@ -200,7 +200,8 @@ li svg {
   height: 100%;
 }
 .main {
-  height: 80rem;
+  min-height: 100vh;
+  /* height: 80rem; */
   background: -o-linear-gradient(top, #1f1f1fed, #000, #1f1f1f);
   background: -webkit-gradient(
     linear,
@@ -370,11 +371,16 @@ body {
   );
   background-image: linear-gradient(#101010, #1f1f1f, #101010);
 }
-.actors-main section {
+.actors-main .right {
+  width: 70%;
+  /* padding-top: 100px; */
+  /* padding-bottom: 100px; */
+}
+/* .actors-main section {
   width: 70%;
   padding-top: 100px;
   padding-bottom: 100px;
-}
+} */
 .actors-h2 {
   font-size: 45px;
   color: #fff;
