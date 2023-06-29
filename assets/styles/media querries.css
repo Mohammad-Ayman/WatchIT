@@ -87,6 +87,9 @@
   .actors-main section {
     width: 100%;
   }
+  .welcome {
+    margin-bottom: 0;
+  }
   #main-bg {
     padding: 0 2.5rem;
   }
