@@ -82,6 +82,7 @@
   }
   .left {
     height: 60rem;
+    padding-bottom: 5rem;
   }
   .actmovie,
   .actors-main section {
@@ -89,6 +90,9 @@
   }
   .welcome {
     margin-bottom: 0;
+  }
+  .text-content p {
+    font-size: 1.8rem;
   }
   #main-bg {
     padding: 0 2.5rem;
