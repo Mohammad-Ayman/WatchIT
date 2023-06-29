@@ -95,13 +95,13 @@
     margin: 3rem;
   }
   img.actor-box {
-    /* width: auto; */
     min-width: 40vw;
     height: auto;
   }
   .actors-main section {
-    margin: 3rem auto;
-    padding: 0;
+    /* margin: 3rem auto; */
+    /* padding: 3rem auto; */
+    margin-bottom: 4rem;
   }
   .actors-ul {
     display: -ms-grid;
